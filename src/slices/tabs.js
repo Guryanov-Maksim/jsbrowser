@@ -4,12 +4,14 @@ import uniqueId from 'lodash/uniqueId';
 
 const defaultActiveTabId = uniqueId();
 const defaultTabName = 'New Tab';
+const defaultContent = '';
 
 const initialState = {
   tabsList: [
     {
       id: defaultActiveTabId,
       name: defaultTabName,
+      content: defaultContent,
     },
   ],
   activeTabId: defaultActiveTabId,
@@ -36,6 +38,14 @@ const tabs = createSlice({
       }
       const tabAddedBeforeClosed = tabsWithoutClosedTab[tabsWithoutClosedTab.length - 1];
       state.activeTabId = tabAddedBeforeClosed?.id || null;
+    },
+    loadTabContent: (state, { payload }) => {
+      state.tabsList = state.tabsList.map((tab) => {
+        if (tab.id === state.activeTabId) {
+          tab.content = payload.content;
+        }
+        return tab;
+      });
     },
   },
 });
