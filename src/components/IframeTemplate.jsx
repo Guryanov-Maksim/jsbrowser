@@ -17,7 +17,6 @@ const getHTMLTemplate = (tabData) => (
   <body>
     <h1>Tab name: ${tabData.name}</h1>
     <h2>Tab Id: ${tabData.id}</h2>
-    <h2>Deployed on heroku!!!!!!</h2>
     <details>
       <summary>Tab metadata</summary>
       <pre>${JSON.stringify(tabData, null, 4)}</pre>
